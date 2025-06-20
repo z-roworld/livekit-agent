@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env        # if you plan to mount this at runtime instead of baking in
