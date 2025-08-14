@@ -11,20 +11,11 @@ RUN apt-get update && apt-get install -y \
     libavformat-dev \
     libavutil-dev \
     libswscale-dev \
-    libavresample-dev \
     libavfilter-dev \
     libavdevice-dev \
     libpostproc-dev \
     libswresample-dev \
-    libavcodec-dev \
-    libavformat-dev \
-    libavutil-dev \
-    libswscale-dev \
-    libavresample-dev \
-    libavfilter-dev \
-    libavdevice-dev \
-    libpostproc-dev \
-    libswresample-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
@@ -42,5 +33,5 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
 # Default command - run the main FastAPI server
-CMD ["python", "main.py"] 
-# CMD ["python", "agent.py", "dev"] 
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# CMD ["python", "main.py"] 
